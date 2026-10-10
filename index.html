@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teacher Management System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login" class="login-wrap">
+  <form id="loginForm" class="login-card">
+    <div class="logo">🎓</div>
+    <h1>Technical Teacher<br>Management System</h1>
+    <p class="muted">Sign in to the admin dashboard</p>
+    <input id="lu" placeholder="Username" autocomplete="username" required>
+    <input id="lp" type="password" placeholder="Password" autocomplete="current-password" required>
+    <div id="lerr" class="error"></div>
+    <button class="btn primary block">Sign in</button>
+  </form>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+  <header class="topbar no-print">
+    <div class="brand"><span class="logo-sm">🎓</span> Teacher Management</div>
+    <button id="logout" class="btn ghost">Logout</button>
+  </header>
+
+  <main class="container">
+    <section class="stats no-print" id="stats"></section>
+
+    <section class="toolbar no-print">
+      <input id="search" class="search" placeholder="🔍 Search name, phone, expertise, shift...">
+      <div class="actions">
+        <button id="addBtn" class="btn primary">+ Add Teacher</button>
+        <button id="printBtn" class="btn">🖨 Print</button>
+        <button id="xlsBtn" class="btn">⬇ Excel</button>
+        <button id="csvBtn" class="btn">⬇ CSV</button>
+      </div>
+    </section>
+
+    <div class="print-title">Technical Teacher List — <span id="printDate"></span></div>
+
+    <div class="card table-wrap">
+      <table id="table">
+        <thead>
+          <tr><th>#</th><th>Name</th><th>Phone</th><th>Expertise</th><th>Qualification</th><th>Experience</th><th>Shift</th><th class="no-print">Docs</th><th class="no-print">Actions</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div id="empty" class="empty hidden">No teachers found.</div>
+    </div>
+  </main>
+</div>
+
+<!-- TEACHER FORM MODAL -->
+<div id="formModal" class="modal hidden">
+  <form id="teacherForm" class="modal-card">
+    <h2 id="formTitle">Add Teacher</h2>
+    <input type="hidden" id="fId">
+    <label>Full name<input id="fName" required></label>
+    <label>Phone number<input id="fPhone" required></label>
+    <label>Area of expertise<input id="fExp" placeholder="e.g. Electrical, IT, Welding" required></label>
+    <div class="grid2">
+      <label>Qualification<select id="fQual"></select></label>
+      <label>Years of experience<input id="fYears" type="number" min="0" max="60" value="0" required></label>
+    </div>
+    <label>Teaching shift<select id="fShift"></select></label>
+    <div id="ferr" class="error"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn" data-close>Cancel</button>
+      <button class="btn primary">Save</button>
+    </div>
+  </form>
+</div>
+
+<!-- DOCUMENTS MODAL -->
+<div id="docModal" class="modal hidden">
+  <div class="modal-card">
+    <h2>Documents — <span id="docTeacher"></span></h2>
+    <ul id="docList" class="doc-list"></ul>
+    <form id="docForm" class="doc-upload">
+      <input type="file" id="docFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" required>
+      <button class="btn primary">Upload</button>
+    </form>
+    <div id="derr" class="error"></div>
+    <div class="modal-actions"><button class="btn" data-close>Close</button></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
